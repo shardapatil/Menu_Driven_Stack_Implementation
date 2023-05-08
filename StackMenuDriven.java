@@ -1,0 +1,126 @@
+package com.nm.stack;
+
+import java.util.Scanner;
+
+public class StackMenuDriven {
+
+	int top,stack[];
+	public void stack(int size)
+	{
+		stack = new int[size];
+		top = -1;
+	}
+	
+	boolean isStackFull()
+	{
+		if(top == stack.length-1)
+			return true;
+		else
+			return false;
+	}
+	
+	boolean isStackEmpty()
+	{
+		if(top == -1)
+			return true;
+		else
+			return false;
+	}
+	
+	public Integer push(int element)
+	{
+		if(isStackFull())
+		{
+			System.out.println("stack is full");
+			return null;
+		}
+		else 
+		{
+			top++;
+			stack[top] = element;
+			return element;
+		}
+	}
+	
+	public Integer pop()
+	{
+		int temp;
+		if(isStackEmpty())
+		{
+			System.out.println("stack empty");	
+			return null;
+		}
+		else 
+		{
+			temp = stack[top];
+			top--;
+		}
+		return temp;
+	}
+	
+	public int peek()
+	{
+		if(isStackEmpty())
+		{
+			System.out.println("Stack is empty");
+			return 0;
+		}
+		return stack[top];
+	}
+	
+	public void print()
+	{
+		for(int i=top ; i>=0; i--)
+		{
+			System.out.println(stack[i]);
+		}
+	}
+	
+	public static void main(String[] args) {
+
+		StackMenuDriven s1 = new StackMenuDriven();
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the size : ");
+		int size = sc.nextInt();
+		
+		s1.stack(size);
+		
+		int ch = 0;
+		do {
+			System.out.println("Enter the choice"
+					+ "\n1.push"
+					+ "\n2.pop"
+					+ "\n3.print"
+					+ "\n4.peek"
+					+ "\n0.exit");
+			ch = sc.nextInt();
+			
+			switch(ch)
+			{
+				case 1: 
+					System.out.println("Enter the element : ");
+					int e = sc.nextInt();
+					s1.push(e);
+					break;
+				case 2:
+					System.out.println("Element pushed : "+s1.pop());
+					break;
+				case 3:
+					s1.print();
+					break;
+				case 4:
+					System.out.println("Top most element of stack is : "+s1.peek());
+					break;
+				case 0:
+					System.out.println("Exiting...");
+					break;
+				default:
+					System.out.println("Enter correct choice : ");
+					break;
+			}
+		}
+		while(ch != 0);
+	}
+}
